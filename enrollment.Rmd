@@ -1,0 +1,28 @@
+---
+title: "Enrollment"
+author: "Pieter Quinton"
+date: "9/19/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r libraries, include=FALSE}
+library(readxl)
+library(tidyverse)
+library(dplyr)
+library(janitor)
+```
+
+```{r}
+enrollment_data <- read_xlsx("raw-data/class_enrollment_summary_by_term_9.19.19.xlsx", skip = 3)
+
+enrollment_data %>%
+  filter(`Course Department` == "English") %>%
+  select(`Course Department`, `Course Name`, `Course ID`, `UGrad`, `Total`) %>%
+  arrange(desc(Total))
+
+```
+
